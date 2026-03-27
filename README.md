@@ -9,3 +9,19 @@ Leandro Fellype
 
 
 5W3H:
+Oque é?
+É UM JOGO DE TERROR
+Quem?
+
+Quando?
+
+Onde?
+
+Por que?
+
+Como?
+
+Quando?
+
+Quantos?
+
