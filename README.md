@@ -24,7 +24,7 @@ Por que?
 
 Como?
 
-Quando?
+Quanto?
 
 Quantos?
 
