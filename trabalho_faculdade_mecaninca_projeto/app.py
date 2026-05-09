@@ -32,18 +32,22 @@ def index():
 @app.route("/cadastrar", methods=["GET", "POST"])
 def cadastrar():
     if request.method == "POST":
-        nome = request.form.get("nome", "")
-        telefone = request.form.get("telefone", "")
-        data = request.form.get("data", "")
-        horario = request.form.get("horario", "")
-        valor = request.form.get("valor", "0")
-        pagamento = request.form.get("pagamento", "")
+        nome = request.form.get("nome", "").strip()
+        telefone = request.form.get("telefone", "").strip()
+        modelo_carro = request.form.get("modelo_carro", "").strip()
+        problema = request.form.get("problema", "").strip()
+        data = request.form.get("data", "").strip()
+        horario = request.form.get("horario", "").strip()
+        valor = request.form.get("valor", "0").strip()
+        pagamento = request.form.get("pagamento", "").strip()
 
         clientes = carregar_clientes()
 
         clientes.append({
             "nome": nome,
             "telefone": telefone,
+            "modelo_carro": modelo_carro,
+            "problema": problema,
             "data": data,
             "horario": horario,
             "valor": valor,
@@ -87,7 +91,7 @@ def listar():
     )
 
 
-@app.route("/excluir/<int:index>")
+@app.route("/excluir/<int:index>", methods=["POST"])
 def excluir(index):
     clientes = carregar_clientes()
 

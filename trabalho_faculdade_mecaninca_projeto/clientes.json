@@ -6,5 +6,13 @@
         "horario": "15:00",
         "valor": "500",
         "pagamento": "Pix"
+    },
+    {
+        "nome": "Lael Albuquerque de Ara\u00fajo Filho",
+        "telefone": "(81) 98920-0000",
+        "data": "2026-05-09",
+        "horario": "17:25",
+        "valor": "12",
+        "pagamento": "Pix"
     }
 ]

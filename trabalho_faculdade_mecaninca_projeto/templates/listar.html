@@ -5,15 +5,19 @@
     <h2> Hoje: {{ hoje }}</h2>
     <h3> Total do dia: R$ {{ "%.2f"|format(total_dia) }}</h3>
     <h3> Total geral: R$ {{ "%.2f"|format(total_geral) }}</h3>
+
+    {% if clientes %}
     {% for cliente in clientes %}
-        <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="card-cliente">
             
             <strong>📅 {{ cliente.data }} | ⏰ {{ cliente.horario }}</strong><br><br>
 
             👤 {{ cliente.nome or '' }} <br>
             📞 {{ cliente.telefone }} <br><br>
+            🚗 {{ cliente.modelo_carro or 'Modelo não informado' }} <br><br>
 
-            💰 R$ {{ cliente.valor }} - {{ cliente.pagamento }}
+            <strong>Problema informado:</strong><br>
+            {{ cliente.problema or 'Não informado' }}<br><br>
 
             💰 R$ {{ cliente.valor }} - {{ cliente.pagamento }}
 
@@ -25,11 +29,14 @@
 
             <br><br>
 
-            <a href="/excluir/{{ loop.index0 }}" onclick="return confirm('Finalizar atendimento?')">
-                <button>Finalizar Atendimento</button>
-            </a>
+            <form method="POST" action="/excluir/{{ loop.index0 }}" onsubmit="return confirm('Finalizar atendimento?')">
+                <button type="submit">Finalizar Atendimento</button>
+            </form>
         </div>
     {% endfor %}
+    {% else %}
+        <p>Nenhum cliente cadastrado.</p>
+    {% endif %}
 
     <br>
     <a href="/"><button>Voltar</button></a>
