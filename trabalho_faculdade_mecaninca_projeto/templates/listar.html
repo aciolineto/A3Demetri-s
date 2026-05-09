@@ -1,43 +1,55 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<div class="container">
-    <h1>Agenda</h1>
-    <h2> Hoje: {{ hoje }}</h2>
-    <h3> Total do dia: R$ {{ "%.2f"|format(total_dia) }}</h3>
-    <h3> Total geral: R$ {{ "%.2f"|format(total_geral) }}</h3>
+<div class="container agenda">
+    <div class="topo">
+        <h1>Agenda</h1>
+        <p>Hoje: {{ hoje }}</p>
+    </div>
+
+    <div class="resumo">
+        <div>
+            <span>Total do dia</span>
+            <strong>R$ {{ "%.2f"|format(total_dia) }}</strong>
+        </div>
+        <div>
+            <span>Total geral</span>
+            <strong>R$ {{ "%.2f"|format(total_geral) }}</strong>
+        </div>
+    </div>
 
     {% if clientes %}
     {% for cliente in clientes %}
         <div class="card-cliente">
-            
-            <strong>📅 {{ cliente.data }} | ⏰ {{ cliente.horario }}</strong><br><br>
+            <div class="card-topo">
+                <strong>📅 {{ cliente.data }}</strong>
+                <strong>⏰ {{ cliente.horario }}</strong>
+            </div>
 
-            👤 {{ cliente.nome or '' }} <br>
-            📞 {{ cliente.telefone }} <br><br>
-            🚗 {{ cliente.modelo_carro or 'Modelo não informado' }} <br><br>
+            <p><strong>Cliente:</strong> {{ cliente.nome or '' }}</p>
+            <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
+            <p><strong>Carro:</strong> {{ cliente.modelo_carro or 'Modelo não informado' }}</p>
 
-            <strong>Problema informado:</strong><br>
-            {{ cliente.problema or 'Não informado' }}<br><br>
+            <div class="problema">
+                <strong>Problema informado:</strong>
+                <p>{{ cliente.problema or 'Não informado' }}</p>
+            </div>
 
-            💰 R$ {{ cliente.valor }} - {{ cliente.pagamento }}
+            <p><strong>Valor:</strong> R$ {{ cliente.valor }} - {{ cliente.pagamento }}</p>
 
-            <br><br>
+            <div class="acoes-card">
+                <a href="https://wa.me/{{ (cliente.telefone or '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}" target="_blank">
+                    <button class="botao-whatsapp">WhatsApp</button>
+                </a>
 
-            <a href="https://wa.me/{{ (cliente.telefone or '') | replace('(', '') | replace(')', '') | replace(' ', '') | replace('-', '') }}" target="_blank">
-                <button>💬 WhatsApp</button>
-            </a>
-
-            <br><br>
-
-            <form method="POST" action="/excluir/{{ loop.index0 }}" onsubmit="return confirm('Finalizar atendimento?')">
-                <button type="submit">Finalizar Atendimento</button>
-            </form>
+                <form method="POST" action="/excluir/{{ loop.index0 }}" onsubmit="return confirm('Finalizar atendimento?')">
+                    <button type="submit" class="botao-finalizar">Finalizar</button>
+                </form>
+            </div>
         </div>
     {% endfor %}
     {% else %}
-        <p>Nenhum cliente cadastrado.</p>
+        <p class="vazio">Nenhum cliente cadastrado.</p>
     {% endif %}
 
-    <br>
-    <a href="/"><button>Voltar</button></a>
+    <a href="/"><button class="botao-secundario">Voltar</button></a>
 </div>

@@ -1,9 +1,14 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<div class="container">
-    <h1>Sistema de Oficina Mecânica</h1>
+<div class="container home">
+    <div class="topo">
+        <img class="logo" src="/static/logo.jpeg" alt="Logo da oficina">
+        <h1>Sistema de Oficina Mecânica</h1>
+        <p>Controle simples de clientes e atendimentos</p>
+    </div>
 
-    <a href="/cadastrar"><button>Cadastrar Cliente</button></a>
-    <br><br>
-    <a href="/listar"><button>Ver Agenda</button></a>
+    <div class="menu">
+        <a href="/cadastrar"><button class="botao-principal">Cadastrar Cliente</button></a>
+        <a href="/listar"><button class="botao-secundario">Ver Agenda</button></a>
+    </div>
 </div>

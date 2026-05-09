@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 <div class="container">
-    <h1>Cadastrar Cliente</h1>
+    <div class="topo">
+        <h1>Cadastrar Cliente</h1>
+        <p>Preencha os dados do atendimento</p>
+    </div>
 
     <form method="POST">
         <label for="nome">Nome do cliente</label>
@@ -33,11 +36,10 @@
             <option>Cartão</option>
         </select>
 
-        <button type="submit">Salvar</button>
+        <button type="submit" class="botao-principal">Salvar Atendimento</button>
     </form>
 
-    <br>
-    <a href="/">Voltar</a>
+    <a class="link-voltar" href="/">Voltar para o início</a>
 </div>
 <script>
 document.getElementById("telefone").addEventListener("input", function(e) {
